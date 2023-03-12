@@ -92,14 +92,31 @@ def extract_images_from_video(video, folder=None, delay=1, name="img"):
         count += delay*fps
         vidcap.set(1, count)
 
+
+
+def rename_files(folder, name=""):
+        # Get a list of all the files in the folder
+    files = os.listdir(folder)
+
+    # Loop through all the files in the folder
+    i=0
+    for file in files:
+        # Construct the new file name
+        new_file_name = name +str(i)+".jpg"
+        print(".",i)
+        # Rename the file using the new file name
+        os.rename(os.path.join(folder, file), os.path.join(folder, new_file_name))
+        i+=1
+
 if __name__ == "__main__":
 # set the directory path where the video files are present
     dir_path = "C:\\Users\\xxx\\Downloads\\dataset\\Videos"
 
     # loop over all the files present in the directory
-    folder = "C:\\Users\\xxxx\\Downloads\\dataset\\images\\"
+    folder = "C:\\Users\\xx\\Downloads\\dataset\\images\\"
+    # rename_files(folder)
     for file_name in os.listdir(dir_path):
         # separate the filename and extension of the file
         name, extension = os.path.splitext(file_name)
         video = (os.path.join(dir_path, file_name))
-        extract_frame_by_frame(video, folder, 10, name="img")
+        # extract_frame_by_frame(video, folder, 10, name="img")
